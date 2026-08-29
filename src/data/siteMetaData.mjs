@@ -1,0 +1,23 @@
+export const siteMetadata = {
+  title: "Md Noor-Alom Siddik | Flutter Developer",
+  author: "Md Noor-Alom Siddik",
+  headerTitle: "Md Noor-Alom Siddik",
+  description:
+    "Flutter Developer building scalable, high-performance Android and iOS applications.",
+  language: "en-us",
+  theme: "light",
+  siteName: "Md Noor-Alom Siddik Portfolio",
+  siteUrl: "https://github.com/nooralom1",
+  siteRepo: "https://github.com/nooralom1",
+  siteLogo: "/favicon.ico",
+  image: "/images/noor-alom-profile.png",
+  twitterImage: "/images/noor-alom-profile.png",
+  socialBanner: "/images/noor-alom-profile.png",
+  email: "dev.nooralom@gmail.com",
+  phone: "+8801707418534",
+  github: "https://github.com/nooralom1",
+  linkedin: "https://linkedin.com/in/md-noor-459b3a356",
+  location: "Mohakhali, Dhaka",
+  locale: "en-US",
+  googleSiteVerification: "",
+};
