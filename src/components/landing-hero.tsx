@@ -148,8 +148,6 @@ export default function LandingHero() {
             </p>
             <p className="mt-1 font-bold text-accent">Flutter · Dart</p>
           </motion.div>
-
-
         </motion.div>
       </div>
     </section>

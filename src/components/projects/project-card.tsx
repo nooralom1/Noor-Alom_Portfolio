@@ -80,9 +80,7 @@ export default function ProjectCard(props: ProjectCardProps) {
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className={`group/link inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition hover:-translate-y-0.5 ${
-                "border border-accent/25 text-accent hover:bg-accent/10"
-              }`}
+              className={`group/link inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition hover:-translate-y-0.5 ${"border border-accent/25 text-accent hover:bg-accent/10"}`}
             >
               {link.label}
               <FiArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />

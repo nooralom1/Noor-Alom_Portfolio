@@ -133,10 +133,14 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="transition hover:text-accent" href="/projects">Projects</Link>
+              <Link className="transition hover:text-accent" href="/projects">
+                Projects
+              </Link>
             </li>
             <li>
-              <Link className="transition hover:text-accent" href="/contact">Contact</Link>
+              <Link className="transition hover:text-accent" href="/contact">
+                Contact
+              </Link>
             </li>
           </ul>
         </nav>

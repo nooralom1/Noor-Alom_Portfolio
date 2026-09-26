@@ -29,7 +29,7 @@ export default function Navbar({ routes }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 sm:px-8 md:px-12 lg:px-16">
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between overflow-hidden rounded-2xl border border-accent/35 bg-gradient-to-r from-accent/10 via-background/95 to-accent/10 px-3 py-2.5 shadow-xl shadow-accent/10 backdrop-blur-xl sm:px-4">
+      <div className="border-accent/35 relative mx-auto flex max-w-7xl items-center justify-between overflow-hidden rounded-2xl border bg-gradient-to-r from-accent/10 via-background/95 to-accent/10 px-3 py-2.5 shadow-xl shadow-accent/10 backdrop-blur-xl sm:px-4">
         <Link
           href="/"
           className="group flex items-center gap-3 rounded-xl pr-2"
@@ -54,7 +54,10 @@ export default function Navbar({ routes }: NavbarProps) {
         >
           <ul className="flex items-center rounded-full border border-accent/10 bg-muted/60 p-1 text-sm font-semibold">
             {routes.map((route) => {
-              const active = route.href === "/" ? pathName === "/" : pathName.startsWith(route.href);
+              const active =
+                route.href === "/"
+                  ? pathName === "/"
+                  : pathName.startsWith(route.href);
 
               return (
                 <li key={route.href}>
