@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 
 export interface ProjectCardProps {
   name: string;
+  slug: string;
   category: string;
   image?: string;
   description: string;
@@ -65,6 +67,13 @@ export default function ProjectCard(props: ProjectCardProps) {
         </div>
 
         <div className="border-accent/15 mt-auto flex flex-wrap gap-3 border-t pt-5">
+          <Link
+            href={`/projects/${props.slug}`}
+            className="group/link inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-xs font-bold text-background transition hover:-translate-y-0.5 hover:bg-accent/80"
+          >
+            View Details
+            <FiArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+          </Link>
           {props.links.map((link, index) => (
             <a
               key={link.href}
@@ -72,9 +81,7 @@ export default function ProjectCard(props: ProjectCardProps) {
               target="_blank"
               rel="noreferrer"
               className={`group/link inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition hover:-translate-y-0.5 ${
-                index === 0
-                  ? "bg-accent text-background hover:bg-accent/80"
-                  : "border border-accent/25 text-accent hover:bg-accent/10"
+                "border border-accent/25 text-accent hover:bg-accent/10"
               }`}
             >
               {link.label}

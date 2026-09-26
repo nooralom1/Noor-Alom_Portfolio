@@ -1,19 +1,28 @@
-# Md Noor-Alom Siddik — Portfolio
+# Md Noor-Alom Siddik - Flutter Developer Portfolio
 
-Personal portfolio for Md Noor-Alom Siddik, a Flutter Developer focused on production-ready Android and iOS applications.
+A clean production portfolio built with Next.js, TypeScript and Tailwind CSS.
 
-## Stack
-
-- Next.js
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-
-## Development
+## Setup
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+## Production
+
+```bash
+npm run build
+npm start
+```
+
+## Main content
+
+- `src/data/projects.ts` - portfolio projects
+- `src/data/experience.ts` - work experience
+- `src/data/education.ts` - education
+- `src/data/skills.ts` - technical skills
+- `src/data/siteMetaData.mjs` - profile and SEO metadata
+- `public/MD_NOOR-ALOM_SIDDIK_Resume.pdf` - downloadable resume
+
+Before deployment, set `siteUrl` in `src/data/siteMetaData.mjs` to the final portfolio domain.

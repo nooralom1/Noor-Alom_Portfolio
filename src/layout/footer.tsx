@@ -44,7 +44,7 @@ export default function Footer() {
             </p>
 
             <a
-              href={`mailto:${siteMetadata.email}`}
+              href="/contact"
               className="group mt-9 inline-flex items-center gap-3 rounded-full bg-background px-6 py-3.5 text-sm font-bold text-accent shadow-lg transition hover:-translate-y-1 hover:bg-background/90"
             >
               Start a conversation
@@ -133,9 +133,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="transition hover:text-accent" href="/projects">
-                Projects
-              </Link>
+              <Link className="transition hover:text-accent" href="/projects">Projects</Link>
+            </li>
+            <li>
+              <Link className="transition hover:text-accent" href="/contact">Contact</Link>
             </li>
           </ul>
         </nav>

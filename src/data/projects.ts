@@ -5,33 +5,36 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
   {
     index: 0,
     title: "Edu Poribar",
-    href: "/projects",
+    href: "/projects/edu-poribar",
     image: "/images/eduporibar.jpeg",
-    tags: ["Flutter", "E-learning", "5K+ Downloads", "4.7 Rating"],
+    tags: ["Flutter", "E-learning", "10K+ Downloads", "4.6 Rating"],
   },
   {
     index: 1,
     title: "Beestera Soccer",
-    href: "/projects",
+    href: "/projects/beestera-soccer",
     image: "/images/beestera.jpeg",
     tags: ["Flutter", "Android", "iOS", "Video Learning"],
   },
   {
     index: 2,
     title: "Urban Koala",
-    href: "/projects",
+    href: "/projects/urban-koala",
     image: "/images/urban.jpeg",
     tags: ["Marketplace", "Maps", "Booking", "Payments"],
   },
 ];
 
-export const PROJECTS_CARD: ProjectCardProps[] = [
+export type Project = ProjectCardProps;
+
+export const PROJECTS_CARD: Project[] = [
   {
     name: "Edu Poribar",
+    slug: "edu-poribar",
     category: "Production E-learning App",
     image: "/images/eduporibar.jpeg",
     description:
-      "A production learning platform with live classes, recorded courses, offline content, video streaming, course enrollment, and real-time MCQ and written examination results. The app has 5K+ downloads and a 4.7 Play Store rating.",
+      "A production learning platform with live classes, recorded courses, offline content, video streaming, course enrollment, and real-time MCQ and written examination results. The app has 10K+ downloads and a 4.6 Play Store rating.",
     technologies: ["Flutter", "REST API", "Offline Access", "Video Streaming"],
     links: [
       {
@@ -42,6 +45,7 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   },
   {
     name: "Beestera Soccer",
+    slug: "beestera-soccer",
     category: "Football Training Platform",
     image: "/images/beestera.jpeg",
     description:
@@ -60,6 +64,7 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   },
   {
     name: "Urban Koala",
+    slug: "urban-koala",
     category: "Location-based Marketplace",
     image: "/images/urban.jpeg",
     description:
@@ -78,6 +83,7 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   },
   {
     name: "Sleep Cast",
+    slug: "sleep-cast",
     category: "Audio & Wellness App",
     image: "/images/sleepcast.jpeg",
     description:
@@ -97,6 +103,7 @@ export const PROJECTS_CARD: ProjectCardProps[] = [
   },
   {
     name: "Wood Machinery",
+    slug: "wood-machinery",
     category: "Industrial E-commerce App",
     image: "/images/wood.jpeg",
     description:

@@ -93,7 +93,7 @@ export default function LandingHero() {
           >
             <div>
               <strong className="block text-2xl font-bold text-foreground">
-                2+
+                3+
               </strong>
               <span className="text-xs font-semibold text-muted-foreground">
                 Years of experience
@@ -149,16 +149,7 @@ export default function LandingHero() {
             <p className="mt-1 font-bold text-accent">Flutter · Dart</p>
           </motion.div>
 
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-7 right-2 rounded-2xl border border-accent/20 bg-background/95 px-5 py-4 shadow-xl backdrop-blur sm:-right-7"
-          >
-            <p className="text-2xl font-bold text-accent">6K+</p>
-            <p className="text-xs font-semibold text-muted-foreground">
-              Users reached
-            </p>
-          </motion.div>
+
         </motion.div>
       </div>
     </section>

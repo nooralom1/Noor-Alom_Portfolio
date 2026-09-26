@@ -29,7 +29,7 @@ export const EXPERIENCE: ExperienceShowcaseListItemProps[] = [
       name: "Classic IT & Sky Mart Ltd",
       href: "https://bd.linkedin.com/company/classicit",
     },
-    date: "Apr 2024 - Sep 2024",
+    date: "Jan 2024 - Sep 2024",
     location: "Uttara, Dhaka",
     description:
       "Built responsive Flutter interfaces, supported REST API integrations, and collaborated through Git-based workflows and code reviews on live production applications.",

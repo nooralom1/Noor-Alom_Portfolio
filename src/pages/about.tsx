@@ -11,7 +11,7 @@ export default function About() {
     <>
       <NextSeo
         title="About Md Noor-Alom Siddik | Flutter Developer"
-        description="Meet Md Noor-Alom Siddik, a Flutter Developer with around two years of experience delivering production Android and iOS applications."
+        description="Meet Md Noor-Alom Siddik, a Flutter Developer with 3+ years of experience building and maintaining production Android and iOS applications."
         canonical={`${siteMetadata.siteUrl}/about`}
         openGraph={{
           url: `${siteMetadata.siteUrl}/about`,

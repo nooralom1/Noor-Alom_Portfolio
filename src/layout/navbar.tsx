@@ -29,7 +29,7 @@ export default function Navbar({ routes }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-4 sm:px-8 md:px-12 lg:px-16">
-      <div className="border-accent/15 mx-auto flex max-w-7xl items-center justify-between rounded-2xl border bg-background/80 px-3 py-2.5 shadow-lg shadow-zinc-950/5 backdrop-blur-xl dark:shadow-black/20 sm:px-4">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between overflow-hidden rounded-2xl border border-accent/35 bg-gradient-to-r from-accent/10 via-background/95 to-accent/10 px-3 py-2.5 shadow-xl shadow-accent/10 backdrop-blur-xl sm:px-4">
         <Link
           href="/"
           className="group flex items-center gap-3 rounded-xl pr-2"
@@ -54,7 +54,7 @@ export default function Navbar({ routes }: NavbarProps) {
         >
           <ul className="flex items-center rounded-full border border-accent/10 bg-muted/60 p-1 text-sm font-semibold">
             {routes.map((route) => {
-              const active = pathName === route.href;
+              const active = route.href === "/" ? pathName === "/" : pathName.startsWith(route.href);
 
               return (
                 <li key={route.href}>
@@ -91,7 +91,7 @@ export default function Navbar({ routes }: NavbarProps) {
             <ThemeSwitch />
           </div>
           <a
-            href={`mailto:${siteMetadata.email}`}
+            href="/contact"
             className="group hidden items-center gap-2 rounded-full bg-accent px-5 py-3 text-xs font-bold text-background shadow-md shadow-accent/20 transition hover:-translate-y-0.5 hover:bg-accent/80 lg:flex"
           >
             Let&apos;s talk
