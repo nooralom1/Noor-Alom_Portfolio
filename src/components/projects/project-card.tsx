@@ -41,16 +41,19 @@ export default function ProjectCard(props: ProjectCardProps) {
             </span>
           </>
         )}
-        <div className="from-zinc-950/45 absolute" />
+
+        <div className="from-zinc-950/45 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
       </div>
 
       <div className="flex flex-1 flex-col p-6 text-foreground sm:p-7">
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
           {props.category}
         </p>
+
         <h2 className="mt-2 text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
           {props.name}
         </h2>
+
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
           {props.description}
         </p>
@@ -74,13 +77,14 @@ export default function ProjectCard(props: ProjectCardProps) {
             View Details
             <FiArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
           </Link>
-          {props.links.map((link, index) => (
+
+          {props.links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className={`group/link inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition hover:-translate-y-0.5 ${"border border-accent/25 text-accent hover:bg-accent/10"}`}
+              className="group/link inline-flex items-center gap-2 rounded-full border border-accent/25 px-4 py-2.5 text-xs font-bold text-accent transition hover:-translate-y-0.5 hover:bg-accent/10"
             >
               {link.label}
               <FiArrowUpRight className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />

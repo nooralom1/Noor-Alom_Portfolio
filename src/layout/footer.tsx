@@ -37,19 +37,20 @@ export default function Footer() {
             <h2 className="mt-7 max-w-3xl text-4xl font-bold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">
               Have a mobile app idea? Let&apos;s make it real.
             </h2>
+
             <p className="mt-6 max-w-2xl text-sm font-medium leading-7 text-background/75 sm:text-base">
               I&apos;m open to Flutter opportunities, product collaborations,
-              and ambitious mobile projects. Tell me what you&apos;re building
-              I&apos;ll get back to you.
+              and ambitious mobile projects. Tell me what you&apos;re building,
+              and I&apos;ll get back to you.
             </p>
 
-            <a
+            <Link
               href="/contact"
               className="group mt-9 inline-flex items-center gap-3 rounded-full bg-background px-6 py-3.5 text-sm font-bold text-accent shadow-lg transition hover:-translate-y-1 hover:bg-background/90"
             >
               Start a conversation
               <FiArrowUpRight className="h-5 w-5 transition-transform group-hover:rotate-45" />
-            </a>
+            </Link>
           </div>
 
           <div className="lg:border-background/15 relative flex flex-col justify-end lg:border-l lg:pl-12">
@@ -65,6 +66,7 @@ export default function Footer() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-background/10 transition group-hover:bg-background/20">
                   <MailIcon className="h-5 w-5" />
                 </span>
+
                 <span>
                   <span className="block text-xs font-semibold text-background/60">
                     Email
@@ -82,6 +84,7 @@ export default function Footer() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-background/10 transition group-hover:bg-background/20">
                   <FiPhone className="h-5 w-5" />
                 </span>
+
                 <span>
                   <span className="block text-xs font-semibold text-background/60">
                     Phone
@@ -96,6 +99,7 @@ export default function Footer() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-background/10">
                   <FiMapPin className="h-5 w-5" />
                 </span>
+
                 <span>
                   <span className="block text-xs font-semibold text-background/60">
                     Based in
@@ -115,6 +119,7 @@ export default function Footer() {
           <Link href="/" className="text-lg font-extrabold text-foreground">
             Noor-Alom<span className="text-accent">.</span>
           </Link>
+
           <p className="mt-1 text-xs font-medium text-muted-foreground">
             Flutter Developer · Android & iOS
           </p>
@@ -127,16 +132,19 @@ export default function Footer() {
                 Home
               </Link>
             </li>
+
             <li>
               <Link className="transition hover:text-accent" href="/about">
                 About
               </Link>
             </li>
+
             <li>
               <Link className="transition hover:text-accent" href="/projects">
                 Projects
               </Link>
             </li>
+
             <li>
               <Link className="transition hover:text-accent" href="/contact">
                 Contact
