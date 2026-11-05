@@ -79,7 +79,7 @@ export default function Projects() {
               <div className="mt-7 flex items-center gap-7">
                 <div>
                   <strong className="block text-3xl font-bold text-foreground">
-                    5+
+                    7+
                   </strong>
                   <span className="text-xs font-semibold text-muted-foreground">
                     Production apps

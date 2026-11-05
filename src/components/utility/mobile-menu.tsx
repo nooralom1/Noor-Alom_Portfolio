@@ -1,9 +1,10 @@
 import { Dispatch, Fragment, SetStateAction } from "react";
 import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
 
 import { Dialog, Transition } from "@headlessui/react";
 
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { siteMetadata } from "@/data/siteMetaData.mjs";
 import ThemeSwitch from "@/components/utility/theme-switch";
 import { type NavbarProps } from "@/layout/navbar";
 import { classNames } from "@/utility/classNames";
@@ -18,8 +19,8 @@ export default function MobileMenu({
   routes,
   setOpenMenu,
 }: MobileMenuProps) {
-  const pathName = usePathname();
   const router = useRouter();
+  const currentPath = router.asPath.split("?")[0];
 
   const handleClick = (href: string) => {
     setOpenMenu(false);
@@ -49,13 +50,33 @@ export default function MobileMenu({
                   >
                     <span
                       className={classNames(
-                        pathName === link.href ? "w-full" : "w-0",
+                        currentPath === link.href ? "w-full" : "w-0",
                         "absolute -bottom-1 left-0 h-1 rounded-lg bg-accent transition-[width] duration-300 group-hover:w-full",
                       )}
                     ></span>
                     {link.title}
                   </button>
                 ))}
+                <div className="flex items-center gap-3 pt-2">
+                  <a
+                    href={siteMetadata.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-bold text-foreground transition hover:bg-accent hover:text-background"
+                  >
+                    <GithubIcon className="h-4 w-4" />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href={siteMetadata.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-sm font-bold text-foreground transition hover:bg-accent hover:text-background"
+                  >
+                    <LinkedinIcon className="h-4 w-4" />
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
                 <ThemeSwitch setClose={setOpenMenu} />
               </div>
               <div className="absolute bottom-0 py-6">

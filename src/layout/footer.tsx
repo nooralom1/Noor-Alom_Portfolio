@@ -109,6 +109,34 @@ export default function Footer() {
                   </span>
                 </span>
               </div>
+
+              <div className="border-t border-background/20 pt-5">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-background/70">
+                  Connect online
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2.5">
+                  <a
+                    href={siteMetadata.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2.5 text-xs font-bold text-accent shadow-md transition hover:-translate-y-0.5 hover:bg-background/90"
+                  >
+                    <GithubIcon className="h-4 w-4" />
+                    GitHub Profile
+                    <FiArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                  <a
+                    href={siteMetadata.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2.5 text-xs font-bold text-accent shadow-md transition hover:-translate-y-0.5 hover:bg-background/90"
+                  >
+                    <LinkedinIcon className="h-4 w-4" />
+                    LinkedIn Profile
+                    <FiArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -117,7 +145,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-1 pb-2 pt-9 sm:px-2 md:flex-row md:items-center md:justify-between">
         <div>
           <Link href="/" className="text-lg font-extrabold text-foreground">
-            Noor-Alom<span className="text-accent">.</span>
+            Md Noor-Alom Siddik<span className="text-accent">.</span>
           </Link>
 
           <p className="mt-1 text-xs font-medium text-muted-foreground">
@@ -153,7 +181,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           {socialLinks.map(({ label, href, icon: Icon }) => (
             <a
               key={label}
@@ -161,9 +189,11 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label={label}
-              className="border-accent/15 flex h-10 w-10 items-center justify-center rounded-full border text-accent transition hover:-translate-y-1 hover:border-accent/40 hover:bg-accent/10"
+              className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-2 text-xs font-bold text-foreground shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:text-accent"
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
+              <span>{label}</span>
+              <FiArrowUpRight className="h-3.5 w-3.5 opacity-60 transition-transform group-hover:rotate-45" />
             </a>
           ))}
         </div>

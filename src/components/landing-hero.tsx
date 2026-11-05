@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiMapPin } from "react-icons/fi";
 
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { siteMetadata } from "@/data/siteMetaData.mjs";
 import heroProfileImg from "@/public/images/noor-alom-profile.png";
 
 const fadeIn = {
@@ -84,6 +86,52 @@ export default function LandingHero() {
             >
               Download CV
             </a>
+
+            <div className="flex items-center gap-2.5">
+              <a
+                href={siteMetadata.github}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:text-accent"
+                aria-label="GitHub Profile"
+              >
+                <GithubIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href={siteMetadata.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:text-accent"
+                aria-label="LinkedIn Profile"
+              >
+                <LinkedinIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <a
+                href={siteMetadata.github}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-accent shadow-sm"
+                aria-label="GitHub Profile"
+              >
+                <GithubIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href={siteMetadata.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-accent shadow-sm"
+                aria-label="LinkedIn Profile"
+              >
+                <LinkedinIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
@@ -96,13 +144,13 @@ export default function LandingHero() {
                 3+
               </strong>
               <span className="text-xs font-semibold text-muted-foreground">
-                Years of experience
+                Years of professional experience
               </span>
             </div>
             <div className="bg-accent/15 h-9 w-px" />
             <div>
               <strong className="block text-2xl font-bold text-foreground">
-                5+
+                7+
               </strong>
               <span className="text-xs font-semibold text-muted-foreground">
                 Production apps

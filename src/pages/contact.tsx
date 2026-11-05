@@ -1,7 +1,14 @@
 import { FormEvent, useState } from "react";
 import { NextSeo } from "next-seo";
 import { motion } from "framer-motion";
-import { FiMail, FiMapPin, FiPhone, FiSend } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiSend,
+} from "react-icons/fi";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { siteMetadata } from "@/data/siteMetaData.mjs";
 
 export default function Contact() {
@@ -48,7 +55,7 @@ export default function Contact() {
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               <a
                 href={`mailto:${siteMetadata.email}`}
-                className="rounded-2xl border border-accent/20 bg-accent/5 p-5 transition hover:border-accent/40"
+                className="rounded-2xl border border-accent/20 bg-accent/5 p-5 transition hover:border-accent/40 hover:bg-accent/10"
               >
                 <FiMail className="h-5 w-5 text-accent" />
                 <p className="mt-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">
@@ -58,13 +65,43 @@ export default function Contact() {
               </a>
               <a
                 href={`tel:${siteMetadata.phone}`}
-                className="rounded-2xl border border-accent/20 bg-accent/5 p-5 transition hover:border-accent/40"
+                className="rounded-2xl border border-accent/20 bg-accent/5 p-5 transition hover:border-accent/40 hover:bg-accent/10"
               >
                 <FiPhone className="h-5 w-5 text-accent" />
                 <p className="mt-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   Phone
                 </p>
                 <p className="mt-1 text-sm font-bold">{siteMetadata.phone}</p>
+              </a>
+              <a
+                href={siteMetadata.github}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl border border-accent/20 bg-accent/5 p-5 transition hover:border-accent/40 hover:bg-accent/10"
+              >
+                <div className="flex items-center justify-between">
+                  <GithubIcon className="h-5 w-5 text-accent" />
+                  <FiArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <p className="mt-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  GitHub
+                </p>
+                <p className="mt-1 text-sm font-bold">github.com/nooralom1</p>
+              </a>
+              <a
+                href={siteMetadata.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl border border-accent/20 bg-accent/5 p-5 transition hover:border-accent/40 hover:bg-accent/10"
+              >
+                <div className="flex items-center justify-between">
+                  <LinkedinIcon className="h-5 w-5 text-accent" />
+                  <FiArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <p className="mt-4 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  LinkedIn
+                </p>
+                <p className="mt-1 text-sm font-bold">Md Noor-Alom Siddik</p>
               </a>
               <div className="rounded-2xl border border-accent/20 bg-accent/5 p-5 sm:col-span-2">
                 <FiMapPin className="h-5 w-5 text-accent" />
