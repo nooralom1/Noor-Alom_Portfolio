@@ -115,7 +115,7 @@ export default function LandingHero() {
                 href={siteMetadata.github}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-accent shadow-sm"
+                className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:text-accent"
                 aria-label="GitHub Profile"
               >
                 <GithubIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
@@ -125,7 +125,7 @@ export default function LandingHero() {
                 href={siteMetadata.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:bg-accent/15 hover:text-accent shadow-sm"
+                className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:text-accent"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
