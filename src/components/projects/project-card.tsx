@@ -23,7 +23,11 @@ export default function ProjectCard(props: ProjectCardProps) {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="border-accent/15 group flex min-h-[500px] flex-col overflow-hidden rounded-3xl border bg-background shadow-sm transition duration-500 hover:-translate-y-1.5 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 dark:bg-zinc-900"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-700 to-zinc-950">
+      <Link
+        href={`/projects/${props.slug}`}
+        className="relative block aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-700 to-zinc-950"
+        aria-label={`View details of ${props.name}`}
+      >
         {props.image ? (
           <Image
             src={props.image}
@@ -43,7 +47,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         )}
 
         <div className="from-zinc-950/45 absolute inset-0 bg-gradient-to-t via-transparent to-transparent" />
-      </div>
+      </Link>
 
       <div className="flex flex-1 flex-col p-6 text-foreground sm:p-7">
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
@@ -51,7 +55,12 @@ export default function ProjectCard(props: ProjectCardProps) {
         </p>
 
         <h2 className="mt-2 text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
-          {props.name}
+          <Link
+            href={`/projects/${props.slug}`}
+            className="transition-colors hover:text-accent"
+          >
+            {props.name}
+          </Link>
         </h2>
 
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
