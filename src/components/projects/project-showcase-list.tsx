@@ -12,6 +12,7 @@ export type ProjectShowcaseListItem = {
   href: string;
   image?: string;
   tags: string[];
+  description?: string;
 };
 
 export interface ProjectShowcaseListProps {

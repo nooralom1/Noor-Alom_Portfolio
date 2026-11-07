@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useEffect, useState, type TouchEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { FiArrowUpRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { AnimatePresence, motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
 
 import { type ProjectShowcaseListItem } from "@/components/projects/project-showcase-list";
 import { classNames } from "@/utility/classNames";
@@ -12,50 +12,78 @@ interface ProjectShowcaseProps {
 }
 
 export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [direction, setDirection] = useState(1);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const scrollPosition = container.scrollLeft;
-    const children = Array.from(container.children) as HTMLElement[];
-    let closestIndex = 0;
-    let minDiff = Infinity;
-    children.forEach((child, i) => {
-      const diff = Math.abs(
-        child.offsetLeft - container.offsetLeft - scrollPosition,
-      );
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIndex = i;
-      }
-    });
-    setActiveIndex(closestIndex);
+  // Auto-scroll every 3.8 seconds when not hovered
+  useEffect(() => {
+    if (isHovered || projects.length <= 1) return;
+
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % projects.length);
+    }, 3800);
+
+    return () => clearInterval(timer);
+  }, [isHovered, projects.length]);
+
+  const goToProject = (newIndex: number) => {
+    setDirection(newIndex > currentIndex ? 1 : -1);
+    setCurrentIndex(newIndex);
   };
 
-  const scrollToIndex = (index: number) => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const children = Array.from(container.children) as HTMLElement[];
-    const target = children[index];
-    if (target) {
-      container.scrollTo({
-        left: target.offsetLeft - container.offsetLeft,
-        behavior: "smooth",
-      });
-      setActiveIndex(index);
+  const handleTouchStart = (e: TouchEvent) => {
+    setIsHovered(true);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    setIsHovered(false);
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+
+    // Minimum swipe threshold: 45px
+    if (diff > 45) {
+      // Swiped left -> next
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % projects.length);
+    } else if (diff < -45) {
+      // Swiped right -> prev
+      setDirection(-1);
+      setCurrentIndex((prev) => (prev > 0 ? prev - 1 : projects.length - 1));
     }
+    setTouchStart(null);
   };
 
-  const handlePrev = () => {
-    const prevIdx = activeIndex > 0 ? activeIndex - 1 : projects.length - 1;
-    scrollToIndex(prevIdx);
-  };
+  const currentProject = projects[currentIndex] ?? projects[0];
 
-  const handleNext = () => {
-    const nextIdx = activeIndex < projects.length - 1 ? activeIndex + 1 : 0;
-    scrollToIndex(nextIdx);
+  const variants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 50 : -50,
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -50 : 50,
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
   };
 
   return (
@@ -64,128 +92,133 @@ export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
       <div className="pointer-events-none absolute -left-20 bottom-10 h-72 w-72 rounded-full bg-accent/5 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Header Section */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="h-px w-9 bg-accent" />
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent">
-                Selected work
-              </p>
-            </div>
-            <h2 className="mt-4 max-w-2xl text-3xl font-extrabold tracking-[-0.04em] text-foreground sm:text-5xl">
-              Apps made to solve
-              <span className="text-accent"> real problems.</span>
-            </h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Production Flutter applications designed, developed, and shipped
-              for people across education, sports, and everyday services.
-            </p>
+        {/* Centered Section Header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+            Selected work
           </div>
-
-          {/* Carousel Arrows & Counter */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 rounded-full border border-accent/20 bg-background/80 px-3.5 py-1.5 text-xs font-bold text-accent shadow-sm">
-              <span>0{activeIndex + 1}</span>
-              <span className="text-muted-foreground/60">/</span>
-              <span className="text-muted-foreground">0{projects.length}</span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={handlePrev}
-                aria-label="Previous project"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/25 bg-background text-foreground shadow-md shadow-accent/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-background active:scale-95"
-              >
-                <FiChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                aria-label="Next project"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/25 bg-background text-foreground shadow-md shadow-accent/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-background active:scale-95"
-              >
-                <FiChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-foreground sm:text-5xl">
+            Apps made to solve
+            <span className="text-accent"> real problems.</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+            Production Flutter applications designed, developed, and shipped for
+            people across education, sports, and everyday services.
+          </p>
         </div>
 
-        {/* Horizontal Smooth Carousel */}
+        {/* Featured Project Showcase Card (Centered, One by One, Auto-Scrolled) */}
         <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="no-scrollbar mt-12 flex select-none snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="relative mx-auto mt-12 max-w-3xl"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          {projects.map((project) => (
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: project.index * 0.08 }}
-              className="border-accent/15 group w-[85vw] shrink-0 snap-start overflow-hidden rounded-3xl border bg-background shadow-md transition duration-500 hover:-translate-y-2 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10 dark:bg-zinc-900 sm:w-[380px] md:w-[440px] lg:w-[460px]"
+              key={currentProject.title}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="bg-background/85 group relative overflow-hidden rounded-3xl border border-accent/25 shadow-2xl shadow-accent/5 backdrop-blur-md transition-all duration-300 hover:border-accent hover:shadow-accent/10"
             >
-              <Link href={project.href} className="block h-full">
-                <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-emerald-700 to-zinc-950">
-                  {project.image ? (
+              <Link href={currentProject.href} className="block">
+                {/* Image Showcase */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-emerald-950 via-zinc-900 to-black sm:aspect-[16/9]">
+                  {currentProject.image ? (
                     <Image
-                      src={project.image}
-                      alt={`${project.title} project preview`}
+                      src={currentProject.image}
+                      alt={`${currentProject.title} preview`}
                       fill
-                      sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      priority
+                      sizes="(min-width: 1024px) 768px, 100vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                  ) : (
-                    <>
-                      <div className="absolute -right-12 -top-16 h-52 w-52 rounded-full border-[32px] border-white/10" />
-                      <span className="absolute bottom-5 right-6 text-6xl font-black text-white/10">
-                        {project.title.slice(0, 2).toUpperCase()}
-                      </span>
-                    </>
-                  )}
-                  <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-zinc-950/60 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-md">
-                    0{project.index + 1}
-                  </span>
-                  <span className="absolute bottom-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-accent text-background shadow-lg shadow-accent/20 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                    <FiArrowUpRight className="h-5 w-5" />
-                  </span>
+                  ) : null}
+
+                  {/* Gradient bottom overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/25 to-transparent" />
+
+                  {/* Top Left: Slide Number */}
+                  <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/20 bg-zinc-950/70 px-3.5 py-1.5 text-xs font-bold text-white shadow-md backdrop-blur-md">
+                    <span className="text-accent">
+                      0{currentProject.index + 1}
+                    </span>
+                    <span className="text-white/40">/</span>
+                    <span>0{projects.length}</span>
+                  </div>
+
+                  {/* Top Right: Auto-playing / Paused Status */}
+                  <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-accent/25 bg-zinc-950/70 px-3.5 py-1.5 text-xs font-medium text-accent shadow-md backdrop-blur-md">
+                    <span
+                      className={classNames(
+                        "h-2 w-2 rounded-full bg-accent",
+                        !isHovered && "animate-pulse",
+                      )}
+                    />
+                    <span className="text-[11px] font-semibold">
+                      {isHovered ? "Paused" : "Auto-sliding"}
+                    </span>
+                  </div>
+
+                  {/* Bottom Right: Circular Arrow Action */}
+                  <div className="absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-background shadow-lg shadow-accent/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/90">
+                    <FiArrowUpRight className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </div>
                 </div>
 
-                <div className="p-6 sm:p-7">
-                  <h3 className="text-2xl font-bold tracking-[-0.025em] text-foreground transition-colors group-hover:text-accent">
-                    {project.title}
-                  </h3>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent"
-                      >
-                        {tag}
+                {/* Content Section */}
+                <div className="p-6 sm:p-8">
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-2xl font-black tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-3xl">
+                        {currentProject.title}
+                      </h3>
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:text-sm">
+                        View case study <FiArrowUpRight className="h-4 w-4" />
                       </span>
-                    ))}
+                    </div>
+
+                    {currentProject.description && (
+                      <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                        {currentProject.description}
+                      </p>
+                    )}
+
+                    {/* Tag Pills */}
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {currentProject.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-accent/20 bg-accent/10 px-3.5 py-1 text-xs font-semibold text-accent shadow-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </Link>
             </motion.article>
-          ))}
+          </AnimatePresence>
         </div>
 
-        {/* Bottom Pagination Dots & View All Button */}
-        <div className="border-accent/15 mt-8 flex flex-col items-center justify-between gap-6 border-t pt-6 sm:flex-row">
+        {/* Bottom Pagination Dots & View All Projects Button */}
+        <div className="border-accent/15 mx-auto mt-8 flex max-w-3xl flex-col items-center justify-between gap-6 border-t pt-6 sm:flex-row">
           {/* Clickable Dots */}
           <div className="flex items-center gap-2">
             {projects.map((_, dotIdx) => (
               <button
                 key={dotIdx}
                 type="button"
-                onClick={() => scrollToIndex(dotIdx)}
+                onClick={() => goToProject(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
                 className={classNames(
                   "h-2.5 rounded-full transition-all duration-300",
-                  activeIndex === dotIdx
+                  currentIndex === dotIdx
                     ? "w-8 bg-accent shadow-sm shadow-accent/50"
                     : "w-2.5 bg-accent/25 hover:bg-accent/50",
                 )}

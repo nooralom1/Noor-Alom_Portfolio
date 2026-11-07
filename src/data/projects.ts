@@ -7,6 +7,8 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
     href: "/projects/edu-poribar",
     image: "/images/eduporibar.jpeg",
     tags: ["Flutter", "E-learning", "10K+ Downloads", "4.6 Rating"],
+    description:
+      "A production learning platform with live classes, recorded courses, offline content, video streaming, course enrollment, and real-time examination results.",
   },
   {
     index: 1,
@@ -14,6 +16,8 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
     href: "/projects/beestera-soccer",
     image: "/images/beestera.jpeg",
     tags: ["Flutter", "Android", "iOS", "Video Learning"],
+    description:
+      "Cross-platform football training app with structured video drills, player submission workflows, and dynamic competitive leaderboards.",
   },
   {
     index: 2,
@@ -21,6 +25,8 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
     href: "/projects/urban-koala",
     image: "/images/urban.jpeg",
     tags: ["Marketplace", "Maps", "Booking", "Payments"],
+    description:
+      "Australian on-demand marketplace app for secure local parking, bike storage, instant booking reservations, and in-app payments.",
   },
   {
     index: 3,
@@ -33,6 +39,8 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
       "Sleep Timer",
       "In-App Purchases",
     ],
+    description:
+      "Ambient relaxation and soundscape streaming app designed for restful sleep, offline caching, and customizable meditation timers.",
   },
   {
     index: 4,
@@ -40,6 +48,8 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
     href: "/projects/wood-machinery",
     image: "/images/wood.jpeg",
     tags: ["E-Commerce", "REST API", "Live Tracking", "Industrial Tools"],
+    description:
+      "Specialized B2B & B2C marketplace for woodworking equipment, heavy machinery, spare parts purchasing, and servicing requests.",
   },
 ];
 
