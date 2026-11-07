@@ -1,9 +1,16 @@
+import { FC, SVGProps } from "react";
 import {
+  FiAward,
+  FiClock,
   FiCode,
   FiLayers,
+  FiMessageSquare,
   FiServer,
   FiSmartphone,
+  FiTarget,
   FiTool,
+  FiTrendingUp,
+  FiUsers,
   FiZap,
 } from "react-icons/fi";
 import {
@@ -114,5 +121,57 @@ export const SKILLS_DATA: SkillsShowcaseProps["skills"] = [
       { name: "Git & GitHub Flow", icon: SiGit, highlight: true },
       { name: "Jira & Agile Scrum", icon: SiJira },
     ],
+  },
+];
+
+export interface SoftSkill {
+  title: string;
+  description: string;
+  icon: FC<SVGProps<SVGSVGElement>>;
+  tags: string[];
+}
+
+export const SOFT_SKILLS_DATA: SoftSkill[] = [
+  {
+    title: "Cross-Functional Collaboration",
+    description:
+      "Partnering seamlessly with UI/UX designers, backend engineers, and product managers to align on features, review PRs, and ship polished releases.",
+    icon: FiUsers,
+    tags: ["Design Sync", "Code Reviews", "Cross-Team Work"],
+  },
+  {
+    title: "Problem Solving & Analytical Debugging",
+    description:
+      "Methodical root-cause analysis for race conditions, native platform crashes, memory leaks, and complex mobile state bugs.",
+    icon: FiTarget,
+    tags: ["Root Cause Analysis", "Performance Profiling", "Critical Thinking"],
+  },
+  {
+    title: "Agile & Sprint Delivery",
+    description:
+      "Active engagement in Scrum ceremonies, sprint estimations, backlog grooming, and consistently meeting release deadlines.",
+    icon: FiClock,
+    tags: ["Scrum & Kanban", "Sprint Planning", "Deadline Focused"],
+  },
+  {
+    title: "Product & User-Centric Mindset",
+    description:
+      "Designing with empathy for real users — prioritizing touch responsiveness, intuitive micro-interactions, accessibility, and offline recovery.",
+    icon: FiAward,
+    tags: ["UX Empathy", "Attention to Detail", "Quality First"],
+  },
+  {
+    title: "Clear Technical Communication",
+    description:
+      "Articulating architectural decisions, trade-offs, and progress clearly to both technical engineering peers and business stakeholders.",
+    icon: FiMessageSquare,
+    tags: ["Documentation", "Stakeholder Updates", "Transparency"],
+  },
+  {
+    title: "Fast Adaptability & Continuous Learning",
+    description:
+      "Quickly adopting emerging mobile paradigms, new Dart/Flutter engine upgrades (Impeller, Dart 3 patterns), and modern industry toolchains.",
+    icon: FiTrendingUp,
+    tags: ["Self-Directed", "Modern Toolchains", "Growth Mindset"],
   },
 ];

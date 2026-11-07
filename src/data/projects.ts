@@ -22,6 +22,25 @@ export const PROJECT_SHOWCASE: ProjectShowcaseListItem[] = [
     image: "/images/urban.jpeg",
     tags: ["Marketplace", "Maps", "Booking", "Payments"],
   },
+  {
+    index: 3,
+    title: "Sleep Cast",
+    href: "/projects/sleep-cast",
+    image: "/images/sleepcast.jpeg",
+    tags: [
+      "Audio Streaming",
+      "Offline Mode",
+      "Sleep Timer",
+      "In-App Purchases",
+    ],
+  },
+  {
+    index: 4,
+    title: "Wood Machinery",
+    href: "/projects/wood-machinery",
+    image: "/images/wood.jpeg",
+    tags: ["E-Commerce", "REST API", "Live Tracking", "Industrial Tools"],
+  },
 ];
 
 export interface ProjectFeature {
