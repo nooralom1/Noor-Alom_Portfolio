@@ -142,28 +142,6 @@ export default function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                   {/* Gradient bottom overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/25 to-transparent" />
 
-                  {/* Top Left: Slide Number */}
-                  <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/20 bg-zinc-950/70 px-3.5 py-1.5 text-xs font-bold text-white shadow-md backdrop-blur-md">
-                    <span className="text-accent">
-                      0{currentProject.index + 1}
-                    </span>
-                    <span className="text-white/40">/</span>
-                    <span>0{projects.length}</span>
-                  </div>
-
-                  {/* Top Right: Auto-playing / Paused Status */}
-                  <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-accent/25 bg-zinc-950/70 px-3.5 py-1.5 text-xs font-medium text-accent shadow-md backdrop-blur-md">
-                    <span
-                      className={classNames(
-                        "h-2 w-2 rounded-full bg-accent",
-                        !isHovered && "animate-pulse",
-                      )}
-                    />
-                    <span className="text-[11px] font-semibold">
-                      {isHovered ? "Paused" : "Auto-sliding"}
-                    </span>
-                  </div>
-
                   {/* Bottom Right: Circular Arrow Action */}
                   <div className="absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-background shadow-lg shadow-accent/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/90">
                     <FiArrowUpRight className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
