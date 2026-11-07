@@ -109,29 +109,6 @@ export default function LandingHero() {
                 <span>LinkedIn</span>
               </a>
             </div>
-
-            <div className="flex items-center gap-2.5">
-              <a
-                href={siteMetadata.github}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:text-accent"
-                aria-label="GitHub Profile"
-              >
-                <GithubIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
-                <span>GitHub</span>
-              </a>
-              <a
-                href={siteMetadata.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:bg-accent/15 group inline-flex items-center gap-2 rounded-full border border-accent/25 bg-background/80 px-4 py-3.5 text-sm font-bold text-foreground shadow-sm backdrop-blur transition hover:-translate-y-1 hover:border-accent hover:text-accent"
-                aria-label="LinkedIn Profile"
-              >
-                <LinkedinIcon className="h-4 w-4 text-accent transition-transform group-hover:scale-110" />
-                <span>LinkedIn</span>
-              </a>
-            </div>
           </motion.div>
 
           <motion.div
@@ -185,17 +162,6 @@ export default function LandingHero() {
               </p>
             </div>
           </div>
-
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-5 top-12 rounded-2xl border border-accent/20 bg-background/90 px-4 py-3 shadow-xl backdrop-blur md:-left-12"
-          >
-            <p className="text-xs font-semibold text-muted-foreground">
-              Specialized in
-            </p>
-            <p className="mt-1 font-bold text-accent">Flutter · Dart</p>
-          </motion.div>
         </motion.div>
       </div>
     </section>
